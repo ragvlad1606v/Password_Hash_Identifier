@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HASH::IDENTIFY — Forensic Hash Analyzer</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <main class="wrap">
+
+    <header class="header">
+      <p class="eyebrow">FORENSIC STRING ANALYSIS &mdash; NO DATA LEAVES THIS PAGE</p>
+      <h1 class="title">HASH<span class="colon">::</span>IDENTIFY</h1>
+      <p class="sub">Paste a digest. We'll read its length, its alphabet, and its scars to work out what made it.</p>
+    </header>
+
+    <section class="meter-block" aria-hidden="true">
+      <div class="meter-label">
+        <span>INPUT LENGTH</span>
+        <span id="lengthReadout">0 chars</span>
+      </div>
+      <div class="meter" id="meter"></div>
+    </section>
+
+    <section class="console">
+      <label for="hashInput" class="console-label">
+        <span class="prompt">&gt;</span> paste hash
+      </label>
+      <textarea
+        id="hashInput"
+        class="console-input"
+        placeholder="e.g. 5f4dcc3b5aa765d61d8327deb882cf99"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        rows="2"
+      ></textarea>
+
+      <div class="meta-row" id="metaRow">
+        <div class="meta-chip" id="chipLength">
+          <span class="chip-key">LEN</span><span class="chip-val">—</span>
+        </div>
+        <div class="meta-chip" id="chipCharset">
+          <span class="chip-key">SET</span><span class="chip-val">—</span>
+        </div>
+        <div class="meta-chip" id="chipDelim">
+          <span class="chip-key">FORMAT</span><span class="chip-val">—</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="results" id="results" aria-live="polite">
+      <div class="results-head">
+        <h2>CANDIDATE MATCHES</h2>
+        <span class="results-count" id="resultsCount">0 found</span>
+      </div>
+      <div class="results-list" id="resultsList">
+        <div class="empty-state">
+          <p>Waiting on input. Drop a hash above &mdash; MD5, SHA-family, bcrypt, NTLM, and two dozen others are on file.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Matching is heuristic &mdash; built from length, alphabet, and prefix signatures, the same way early triage tools like <em>hashID</em> work. Many algorithms share a shape (MD5 and NTLM are both 32 hex chars), so overlapping candidates are ranked, not certain. Confirm anything important against the source system.</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
